@@ -17,7 +17,7 @@ pip install ragy
 Here's a simple example of how to use RAGy to build a RAG application:
 
 ```python
-from ragy import RAG
+from ragy.rag import RAG
 from ragy.reasoning import OpenAIEmbeddingModel, OpenAIGPTEngine
 from ragy.rawdoc import DirectoryRawDocumentRetriever
 from ragy.vector import ChromaVectorStore

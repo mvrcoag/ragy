@@ -1,4 +1,7 @@
-from ragy.core import Document, Chunk, EmbeddingModel, RawDocumentRetriever, VectorStore
+from ragy.core import Document, Chunk
+from ragy.reasoning import EmbeddingModel
+from ragy.rawdoc import RawDocumentRetriever
+from ragy.vector import VectorStore
 
 
 class Ingestor:
