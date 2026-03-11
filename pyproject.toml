@@ -24,9 +24,6 @@ dependencies = [
 Homepage = "https://github.com/mvrcoag/ragy"
 Repository = "https://github.com/mvrcoag/ragy"
 
-[project.scripts]
-ragy = "ragy.cli:main"
-
 [tool.setuptools]
 package-dir = {"" = "src"}
 

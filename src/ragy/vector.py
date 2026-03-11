@@ -61,8 +61,14 @@ class ChromaVectorStore(VectorStore):
             n_results=top_k,
         )
 
+        ids = results["ids"]
+        documents = results["documents"]
+
+        if ids is None or documents is None:
+            return []
+
         chunks: list[Chunk] = []
-        for id, document in zip(results["ids"][0], results["documents"][0]):
+        for id, document in zip(ids[0], documents[0]):
             chunks.append(Chunk(id, document))
 
         return chunks

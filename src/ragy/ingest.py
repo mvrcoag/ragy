@@ -29,8 +29,8 @@ class Ingestor:
         chunks: list[Chunk] = []
         start = 0
 
-        id = document["id"]
-        text = document["text"]
+        id = document.id
+        text = document.content
         i = 1
 
         while start < len(text):

@@ -40,9 +40,9 @@ class RAG:
             self.embedding_model, self.raw_document_retriever, self.vector_store
         )
 
-    def query(self, query: str, top_k: int = 5) -> str | None:
+    def generate(self, query: str, top_k: int = 5) -> str | None:
         """
-        Queries the system with a user query. It creates an embedding for the query, retrieves similar chunks from the vector store, and generates a response using the AI engine.
+        Generates a response to a user query. Retrieves similar chunks from the vector store based on the query embedding, constructs a list of messages for the AI engine, and generates a response.
         Args:
             query (str): The user query to process.
             top_k (int): The number of similar chunks to retrieve from the vector store. Default is 5.
