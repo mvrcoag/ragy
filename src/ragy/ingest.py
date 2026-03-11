@@ -63,4 +63,4 @@ class Ingestor:
         for chunk in chunked_docs:
             embedding = self.embedding_model.create_embedding(chunk.content)
 
-            self.vector_store.upsert_chunk_embedding(chunk.id, embedding, chunk, {})
+            self.vector_store.upsert_chunk_embedding(chunk.id, embedding, chunk)
