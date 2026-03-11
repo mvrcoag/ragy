@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools >= 69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ragy"
+version = "0.1.0"
+description = "A simple RAG (Retrieval-Augmented Generation) framework for Python with support for cache."
+authors = [
+    { name = "mvrcoag", email = "leucine_never.0d@icloud.com" },
+]
+license = { file = "LICENSE" }
+keywords = ["RAG", "Retrieval-Augmented Generation", "Python", "Cache", "Vector Databases"]
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "chromadb>=1.5.1",
+    "openai>=2.24.0",
+    "pypdf>=6.8.0",
+    "python-dotenv>=1.2.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/mvrcoag/ragy"
+Repository = "https://github.com/mvrcoag/ragy"
+
+[project.scripts]
+ragy = "ragy.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
