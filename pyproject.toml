@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ragy"
-version = "0.1.1"
+version = "0.1.3"
 description = "A simple RAG (Retrieval-Augmented Generation) framework for Python."
 authors = [
     { name = "mvrcoag", email = "leucine_never.0d@icloud.com" },
@@ -12,7 +12,7 @@ authors = [
 license = { file = "LICENSE" }
 keywords = ["RAG", "Retrieval-Augmented Generation", "Python", "Cache", "Vector Databases"]
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.9"
 dependencies = [
     "chromadb>=1.5.1",
     "openai>=2.24.0",
