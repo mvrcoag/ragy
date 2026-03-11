@@ -25,8 +25,8 @@ from ragy.vector import ChromaVectorStore
 # Create a RAG interface with the necessary components
 system_prompt = "You are a helpful assistant that provides accurate information."
 embedding_model = OpenAIEmbeddingModel(model='text-embedding-3-small')
-raw_document_retriever = DirectoryRawDocumentRetriever(dir='path/to/documents')
-vector_store = ChromaVectorStore(collection_name='my_collection')
+raw_document_retriever = DirectoryRawDocumentRetriever(dir='./docs')
+vector_store = ChromaVectorStore(path="./chroma", collection_name='my_collection')
 ai_engine = OpenAIGPTEngine(model='gpt-5.2')
 
 rag = RAG(

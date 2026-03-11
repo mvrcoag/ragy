@@ -24,10 +24,10 @@ class VectorStore(ABC):
 class ChromaVectorStore(VectorStore):
     """The ChromaVectorStore stores and retrieves chunk embeddings using ChromaDB."""
 
-    def __init__(self, collection_name: str):
-        from chromadb import Client
+    def __init__(self, path: str, collection_name: str):
+        from chromadb import PersistentClient
 
-        self.client = Client()
+        self.client = PersistentClient(path=path)
         self.collection = self.client.get_or_create_collection(collection_name)
 
     def upsert_chunk_embedding(
