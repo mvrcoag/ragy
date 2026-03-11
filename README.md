@@ -53,6 +53,18 @@ print(response)
 ## Contributing
 Contributions to RAGy are welcome! If you have an idea for a new feature or improvement, please open an issue or submit a pull request.
 
+**Full AI generated contributions are not accepted**. If you use AI to assist in writing code, please ensure that you review and understand the code before submitting it. You should also provide a clear explanation of the changes you made and the reasoning behind them in your pull request.
+
+AI is a powerful tool that can help you write code faster and more efficiently, but it is not a substitute for human creativity and judgment. When contributing to RAGy, please use AI as a tool to assist you, rather than relying on it to do all the work for you.
+
+We encourage you to contribute in the simplest way possible, avoiding unnecessary complexity and over-engineering. Focus on making meaningful contributions that improve the functionality and usability of RAGy, rather than trying to impress others with complex code.
+
+What things to consider when contributing:
+- Ensure that your code is well-documented and follows the existing code style.
+- Write tests for any new features or changes you make.
+- Be respectful and considerate when communicating with other contributors.
+
+
 ## License
 RAGy is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
