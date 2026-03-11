@@ -22,7 +22,7 @@ class DirectoryRawDocumentRetriever(RawDocumentRetriever):
             Args:
                 dir (str): The directory to retrieve documents from.
             Returns:
-                list[dict[str, str]]: A list of documents, where each document is a dictionary with "id" and "text" keys.
+                list[Document]: A list of Document objects.
         """
 
         import os

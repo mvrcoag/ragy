@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ragy.core import Document, Chunk
+from ragy.core import Chunk
 
 
 class VectorStore(ABC):
@@ -10,8 +10,7 @@ class VectorStore(ABC):
         self,
         chunk_id: str,
         embedding: list[float],
-        document: Document,
-        metadata: dict,
+        chunk: Chunk,
     ):
         pass
 
@@ -32,20 +31,19 @@ class ChromaVectorStore(VectorStore):
         self.collection = self.client.get_or_create_collection(collection_name)
 
     def upsert_chunk_embedding(
-        self, chunk_id: str, embedding: list[float], document: Document, metadata: dict
+        self, chunk_id: str, embedding: list[float], chunk: Chunk
     ):
         """Upserts a chunk embedding into the ChromaDB collection.
         Args:
             chunk_id (str): The unique identifier for the chunk.
             embedding (list[float]): The embedding vector for the chunk.
-            document (Document): The original document that the chunk belongs to.
-            metadata (dict): Additional metadata to store with the chunk.
+            chunk (Chunk): The Chunk object containing the chunk's content and metadata.
         """
         self.collection.upsert(
             ids=[chunk_id],
             embeddings=[embedding],
-            documents=[document.content],
-            metadatas=[metadata],
+            documents=[chunk.content],
+            metadatas=[chunk.metadata] if chunk.metadata is not None else None,
         )
 
     def retrieve_similar_chunks(self, query_embedding: list[float], top_k: int):

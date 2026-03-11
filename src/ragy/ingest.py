@@ -33,12 +33,13 @@ class Ingestor:
         start = 0
 
         id = document.id
-        text = document.content
+        content = document.content
+        metadata = document.metadata
         i = 1
 
-        while start < len(text):
+        while start < len(content):
             end = start + chunk_size
-            chunks.append(Chunk(f"{id}_chunk_{i}", text[start:end]))
+            chunks.append(Chunk(f"{id}_chunk_{i}", content[start:end], metadata))
             start = end - chunk_overlap
             i += 1
 

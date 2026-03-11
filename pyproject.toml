@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ragy"
-version = "0.1.0"
+version = "0.1.1"
 description = "A simple RAG (Retrieval-Augmented Generation) framework for Python."
 authors = [
     { name = "mvrcoag", email = "leucine_never.0d@icloud.com" },
