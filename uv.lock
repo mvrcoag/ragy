@@ -893,9 +893,9 @@ wheels = [
 ]
 
 [[package]]
-name = "rag"
+name = "ragy"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "chromadb" },
     { name = "openai" },
