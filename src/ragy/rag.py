@@ -40,7 +40,12 @@ class RAG:
 
         messages = [{"role": "system", "content": self.system_prompt}]
         for chunk in similar_chunks:
-            messages.append({"role": "user", "content": chunk.content})
+            messages.append(
+                {
+                    "role": "user",
+                    "content": f"Retrieved Chunk ID: {chunk.id}\nContent: {chunk.content}",
+                }
+            )
         messages.append({"role": "user", "content": query})
 
         response = self.ai_engine.generate_response(messages)

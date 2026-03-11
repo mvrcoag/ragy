@@ -23,7 +23,12 @@ from ragy.rawdoc import DirectoryRawDocumentRetriever
 from ragy.vector import ChromaVectorStore
 
 # Create a RAG interface with the necessary components
-system_prompt = "You are a helpful assistant that provides accurate information."
+system_prompt = """
+You are a helpful assistant that provides accurate and concise answers to user queries based on the retrieved documents.
+Always cite the sources of your information and provide references when applicable.
+Include the ID of the retrieved documents in your response to help users verify the information.
+If you don't know the answer because the retrieved documents don't contain the information, say "I don't know" instead of making up an answer.
+"""
 embedding_model = OpenAIEmbeddingModel(model='text-embedding-3-small')
 raw_document_retriever = DirectoryRawDocumentRetriever(dir='./docs')
 vector_store = ChromaVectorStore(path="./chroma", collection_name='my_collection')
