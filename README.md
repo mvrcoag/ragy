@@ -37,12 +37,12 @@ rag = RAG(
     ai_engine=ai_engine
 )
 
+# Use the RAG interface to ingest documents into the vector store
+rag.ingest(chunk_size=512, chunk_overlap=128)
+
 # Use the RAG interface to generate a response to a query
 response = rag.generate('What is the capital of France?')
 print(response)
-
-# Use the RAG interface to ingest documents into the vector store
-rag.ingest(chunk_size=512, chunk_overlap=128)
 ```
 
 ## Contributing
