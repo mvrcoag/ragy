@@ -15,8 +15,14 @@ class EmbeddingModel(ABC):
 class OpenAIEmbeddingModel(EmbeddingModel):
     """The OpenAIEmbeddingModel creates embeddings using OpenAI's embedding API."""
 
-    def __init__(self, model: str = "text-embedding-3-small"):
-        self.client = OpenAI()
+    def __init__(
+        self,
+        model: str = "text-embedding-3-small",
+        api_key: str | None = None,
+        base_url: str | None = None,
+    ):
+        # Manually added api key here so we can use OPENROUTER api key (poor man's OpenAI lol)
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
         self.model = model
 
     def create_embedding(self, text: str) -> list[float]:
@@ -39,9 +45,16 @@ class AIEngine(ABC):
 
 
 class OpenAIGPTEngine(AIEngine):
-    def __init__(self, model: str = "gpt-5.2"):
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+        api_key: str | None = None,
+        base_url: str | None = None,
+    ):
         self.model = model
-        self.client = OpenAI()
+        
+        # Manually added api key here so we can use OPENROUTER api key (poor man's OpenAI lol)
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
 
     """The OpenAIGPTEngine generates responses using OpenAI's chat completion API."""
 

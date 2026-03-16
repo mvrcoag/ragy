@@ -70,3 +70,78 @@ class ChromaVectorStore(VectorStore):
             chunks.append(Chunk(id, document))
 
         return chunks
+
+
+class WeaviateVectorStore(VectorStore):
+    """The WeaviateVectorStore stores and retrieves chunk embeddings using Weaviate."""
+
+    def __init__(self, client, collection_name: str):
+        """Initializes the WeaviateVectorStore with an existing Weaviate client and collection name.
+        Args:
+            client (weaviate.WeaviateClient): An authenticated weaviate client instance.
+            collection_name (str): The name of the collection to use.
+        """
+        self.client = client
+        self.collection = self.client.collections.get(collection_name)
+
+    def upsert_chunk_embedding(
+        self, chunk_id: str, embedding: list[float], chunk: Chunk
+    ):
+        """Upserts a chunk embedding into the Weaviate collection.
+        Args:
+            chunk_id (str): The unique identifier for the chunk.
+            embedding (list[float]): The embedding vector for the chunk.
+            chunk (Chunk): The Chunk object containing the chunk's content and metadata.
+        """
+        from weaviate.util import generate_uuid5
+        import json
+
+        properties = {
+            "chunk_id": chunk_id,
+            "content": chunk.content,
+        }
+        if chunk.metadata is not None:
+            properties["metadata"] = json.dumps(chunk.metadata)
+
+        self.collection.data.insert(
+            properties=properties,
+            uuid=generate_uuid5(chunk_id),
+            vector=embedding,
+        )
+
+    def retrieve_similar_chunks(self, query_embedding: list[float], top_k: int) -> list[Chunk]:
+        """Retrieves similar chunks from the Weaviate collection based on a query embedding.
+        Args:
+            query_embedding (list[float]): The embedding vector for the query.
+            top_k (int): The number of similar chunks to retrieve.
+        Returns:
+            list[Chunk]: A list of similar chunks, where each chunk is represented as a Chunk object with an id and content.
+        """
+        import json
+
+        results = self.collection.query.near_vector(
+            near_vector=query_embedding,
+            limit=top_k,
+            return_properties=["chunk_id", "content", "metadata"],
+        )
+
+        chunks: list[Chunk] = []
+        for obj in results.objects:
+            props = obj.properties
+            
+            metadata = None
+            if "metadata" in props and props["metadata"]:
+                try:
+                    metadata = json.loads(str(props["metadata"]))
+                except json.JSONDecodeError:
+                    metadata = None
+
+            chunks.append(
+                Chunk(
+                    id=str(props.get("chunk_id", obj.uuid)),
+                    content=str(props.get("content", "")),
+                    metadata=metadata
+                )
+            )
+
+        return chunks
