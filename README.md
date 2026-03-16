@@ -15,6 +15,7 @@ pip install ragy
 ## Usage
 
 Here's a simple example of how to use RAGy to build a RAG application:
+For more examples please refer [examples folder](./examples/)
 
 ```python
 from ragy.rag import RAG
